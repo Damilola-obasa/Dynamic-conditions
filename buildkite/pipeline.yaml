@@ -3,7 +3,7 @@ steps:
     command: ./scripts/validation_tests.sh
     key: "validation-check"
     soft_fail:
-      - exit_status: "*"
+      - exit_status: 1
   - label: "Run regression only if validation check is passeds"
     depends_on: "validation-check"
     command: |
