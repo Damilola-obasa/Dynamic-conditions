@@ -4,8 +4,6 @@ steps:
     key: "validation-check"
     soft_fail:
       - exit_status: 1
-  - label: "Run regression only if validation check is passeds"
-    depends_on: "validation-check"
     command: |
       if [ $$(buildkite-agent step get "outcome" --step "validation-check") == "failed" ]; then
          cat <<- YAML | buildkite-agent pipeline upload
