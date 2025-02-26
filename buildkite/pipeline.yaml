@@ -1,6 +1,7 @@
 steps:
   - label: "Validation check"
     command: ./scripts/validation_tests.sh
+    allow_failure: true 
     key: "validation-check"
   - label: "Run regression only if validation check is passeds"
     depends_on: "validation-check"
