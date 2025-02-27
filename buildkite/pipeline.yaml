@@ -2,13 +2,15 @@ steps:
   - label: "Validation check"
     command: ./scripts/validation_tests.sh
     key: "validation-check"
-    soft_fail:
-      - exit_status: 1
+  - label: "Run regression only if validation check is passed"
+    depends_on: "validation-check"
     command: |
       if [ $$(buildkite-agent step get "outcome" --step "validation-check") == "passed" ]; then
          cat <<- YAML | buildkite-agent pipeline upload
-         steps:
-           - block: ":rocket: this failed?"
-
+  - block: "Request Release"
+    fields:
+      - text: "Code Name"
+        key: "release-name"
+        hint: "What's the code name for this release? :name_badge:"
       YAML
       fi
