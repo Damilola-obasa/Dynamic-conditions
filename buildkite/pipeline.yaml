@@ -10,7 +10,7 @@ steps:
          steps:
            - label: "Run Regression"
              command: ./scripts/regression_tests.sh
-           - block: ":rocket: Are we ready?"
+           - block: ":rocket: failed?"
 
 
       YAML
