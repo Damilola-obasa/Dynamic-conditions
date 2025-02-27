@@ -7,10 +7,10 @@ steps:
     command: |
       if [ $$(buildkite-agent step get "outcome" --step "validation-check") == "passed" ]; then
          cat <<- YAML | buildkite-agent pipeline upload
-        steps:
-          - block: "Request Release"
-            fields:
-              - text: "works"
+         steps:
+           - label: "Run Regression"
+             command: ./scripts/regression_tests.sh
+           - block: ":rocket: Are we ready?"
 
 
       YAML
